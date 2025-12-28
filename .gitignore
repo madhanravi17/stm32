@@ -1,11 +1,7 @@
-
 *
 !.gitignore
 !STM32CubeIDE_1.14.0/
 !STM32CubeIDE_1.14.0/preferences and development artifacts/
-!STM32CubeIDE_1.14.0/preferences and development artifacts/SineWaveVoltageOutput/
-!STM32CubeIDE_1.14.0/preferences and development artifacts/SineWaveVoltageOutput/CM7/
-!STM32CubeIDE_1.14.0/preferences and development artifacts/SineWaveVoltageOutput/CM7/Core/
-!STM32CubeIDE_1.14.0/preferences and development artifacts/SineWaveVoltageOutput/CM7/Core/Src/
-!STM32CubeIDE_1.14.0/preferences and development artifacts/SineWaveVoltageOutput/CM7/Core/Src/main.c
-!STM32CubeIDE_1.14.0/preferences and development artifacts/**/*/Core/Src/stm32h7xx_hal_msp.c
+!STM32CubeIDE_1.14.0/preferences and development artifacts/**/
+!STM32CubeIDE_1.14.0/preferences and development artifacts/**/main.c
+!STM32CubeIDE_1.14.0/preferences and development artifacts/**/*_msp.c
