@@ -1,5 +1,6 @@
 *
 !.gitignore
+!.clang-format
 !STM32CubeIDE_1.14.0/
 !STM32CubeIDE_1.14.0/preferences and development artifacts/
 !STM32CubeIDE_1.14.0/preferences and development artifacts/**/
