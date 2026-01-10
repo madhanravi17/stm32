@@ -6,3 +6,4 @@
 !STM32CubeIDE_1.14.0/preferences and development artifacts/**/
 !STM32CubeIDE_1.14.0/preferences and development artifacts/**/main.c
 !STM32CubeIDE_1.14.0/preferences and development artifacts/**/*_msp.c
+!STM32CubeIDE_1.14.0/preferences and development artifacts/I2C_h745zi_master_slave/CM7/Core/Src/stm32h7xx_it.c
