@@ -3,7 +3,7 @@
 ## STM32H745ZI - CM7 Core
 
 This document describes the I2C master-slave loopback communication implementation using two I2C peripherals on the same MCU.
-
+master transmits via interrupt since same core , halt CPU through interrupt write / read operation, and slave receives and transmits via interrupt. Because both master and slave are on the same MCU core, the communication is looped back internally, blocking mode is not used to avoid halting the CPU, non blocking interrupt mode is used instead.
 ---
 
 ## Hardware Configuration
