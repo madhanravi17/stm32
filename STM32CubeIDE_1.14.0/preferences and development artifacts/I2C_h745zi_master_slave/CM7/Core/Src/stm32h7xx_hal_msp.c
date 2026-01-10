@@ -60,8 +60,7 @@
 /**
   * Initializes the Global MSP.
   */
-void HAL_MspInit(void)
-{
+void HAL_MspInit(void) {
 
   /* USER CODE BEGIN MspInit 0 */
 
@@ -82,22 +81,19 @@ void HAL_MspInit(void)
   * @param hi2c: I2C handle pointer
   * @retval None
   */
-void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
-{
+void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c) {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
-  if(hi2c->Instance==I2C1)
-  {
+  if (hi2c->Instance == I2C1) {
     /* USER CODE BEGIN I2C1_MspInit 0 */
 
     /* USER CODE END I2C1_MspInit 0 */
 
-  /** Initializes the peripherals clock
+    /** Initializes the peripherals clock
   */
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
     PeriphClkInitStruct.I2c123ClockSelection = RCC_I2C123CLKSOURCE_D2PCLK1;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-    {
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK) {
       Error_Handler();
     }
 
@@ -106,7 +102,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     PB8     ------> I2C1_SCL
     PB9     ------> I2C1_SDA
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
+    GPIO_InitStruct.Pin = GPIO_PIN_8 | GPIO_PIN_9;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -115,22 +111,24 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 
     /* Peripheral clock enable */
     __HAL_RCC_I2C1_CLK_ENABLE();
+    /* I2C1 interrupt Init */
+    HAL_NVIC_SetPriority(I2C1_EV_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(I2C1_EV_IRQn);
+    HAL_NVIC_SetPriority(I2C1_ER_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(I2C1_ER_IRQn);
     /* USER CODE BEGIN I2C1_MspInit 1 */
 
     /* USER CODE END I2C1_MspInit 1 */
-  }
-  else if(hi2c->Instance==I2C4)
-  {
+  } else if (hi2c->Instance == I2C4) {
     /* USER CODE BEGIN I2C4_MspInit 0 */
 
     /* USER CODE END I2C4_MspInit 0 */
 
-  /** Initializes the peripherals clock
+    /** Initializes the peripherals clock
   */
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_I2C4;
     PeriphClkInitStruct.I2c4ClockSelection = RCC_I2C4CLKSOURCE_D3PCLK1;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-    {
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK) {
       Error_Handler();
     }
 
@@ -139,7 +137,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     PF14     ------> I2C4_SCL
     PF15     ------> I2C4_SDA
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_14|GPIO_PIN_15;
+    GPIO_InitStruct.Pin = GPIO_PIN_14 | GPIO_PIN_15;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -157,7 +155,6 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 
     /* USER CODE END I2C4_MspInit 1 */
   }
-
 }
 
 /**
@@ -166,10 +163,8 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
   * @param hi2c: I2C handle pointer
   * @retval None
   */
-void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
-{
-  if(hi2c->Instance==I2C1)
-  {
+void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c) {
+  if (hi2c->Instance == I2C1) {
     /* USER CODE BEGIN I2C1_MspDeInit 0 */
 
     /* USER CODE END I2C1_MspDeInit 0 */
@@ -184,12 +179,13 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
 
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_9);
 
+    /* I2C1 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(I2C1_EV_IRQn);
+    HAL_NVIC_DisableIRQ(I2C1_ER_IRQn);
     /* USER CODE BEGIN I2C1_MspDeInit 1 */
 
     /* USER CODE END I2C1_MspDeInit 1 */
-  }
-  else if(hi2c->Instance==I2C4)
-  {
+  } else if (hi2c->Instance == I2C4) {
     /* USER CODE BEGIN I2C4_MspDeInit 0 */
 
     /* USER CODE END I2C4_MspDeInit 0 */
@@ -211,7 +207,6 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
 
     /* USER CODE END I2C4_MspDeInit 1 */
   }
-
 }
 
 /* USER CODE BEGIN 1 */
